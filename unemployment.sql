@@ -1,4 +1,4 @@
-CREATE TABLE `duration_of_unemployment_ontario_2019` (
+CREATE TABLE `unemployment` (
   `id` int NOT NULL AUTO_INCREMENT,
   `month` char(3) NOT NULL,
   `duration` varchar(45) NOT NULL,
@@ -9,9 +9,9 @@ CREATE TABLE `duration_of_unemployment_ontario_2019` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-SELECT * FROM JiHee200521364.duration_of_unemployment_ontario_2019;
+SELECT * FROM unemployment;
 
-INSERT INTO duration_of_unemployment_ontario_2019 (month, duration, age_group, male, female, total)												
+INSERT INTO unemployment (month, duration, age_group, male, female, total)												
 VALUES ('Mar','1-4 weeks','15-19',18.4,11.4,29.8),
 ('Mar','1-4 weeks','20-24',24.7,12.6,37.2),
 ('Mar','1-4 weeks','25-44',34.6,32.8,67.3),
