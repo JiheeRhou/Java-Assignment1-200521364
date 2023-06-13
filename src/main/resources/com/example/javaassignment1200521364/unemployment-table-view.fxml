@@ -6,43 +6,56 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javaassignment1200521364.UnemploymentTableController">
    <children>
-      <VBox alignment="CENTER" layoutX="200.0" layoutY="24.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label lineSpacing="5.0" text="Duration of Unemployment" textAlignment="CENTER" textFill="#341484">
-               <padding>
-                  <Insets bottom="10.0" />
-               </padding>
-               <font>
-                  <Font name="Britannic Bold" size="24.0" />
-               </font>
+      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <HBox alignment="CENTER" prefHeight="45.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#viewChart_onClick" prefHeight="31.0" prefWidth="100.0" text="View Chart" textAlignment="CENTER">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <HBox BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableView" prefHeight="306.0" prefWidth="600.0">
+                    <columns>
+                      <TableColumn fx:id="monthColumn" prefWidth="75.0" text="Month" />
+                      <TableColumn fx:id="durationColumn" prefWidth="75.0" text="Duration" />
+                        <TableColumn fx:id="ageGroupColumn" prefWidth="75.0" text="Age Group" />
+                        <TableColumn fx:id="maleColumn" prefWidth="75.0" text="Male" />
+                        <TableColumn fx:id="femaleColumn" prefWidth="75.0" text="Female" />
+                        <TableColumn fx:id="totalColumn" prefWidth="75.0" text="Total" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TableView>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" right="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </center>
+         <top>
+            <Label fx:id="titleLabel" lineSpacing="5.0" prefHeight="45.0" prefWidth="157.0" text="Unemployment" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </Label>
-            <TableView fx:id="tableView" prefHeight="309.0" prefWidth="600.0">
-              <columns>
-                <TableColumn fx:id="monthColumn" prefWidth="75.0" text="Month" />
-                <TableColumn fx:id="durationColumn" prefWidth="75.0" text="Duration" />
-                  <TableColumn fx:id="ageGroupColumn" prefWidth="75.0" text="Age Group" />
-                  <TableColumn fx:id="maleColumn" prefWidth="75.0" text="Male" />
-                  <TableColumn fx:id="femaleColumn" prefWidth="75.0" text="Female" />
-                  <TableColumn fx:id="totalColumn" prefWidth="75.0" text="Total" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-            <Button mnemonicParsing="false" onAction="#viewChart_onClick" text="View Graph" textAlignment="CENTER" textFill="#341484">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Dubai Medium" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
+         </top>
+      </BorderPane>
    </children>
 </AnchorPane>

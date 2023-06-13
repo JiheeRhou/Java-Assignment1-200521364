@@ -31,7 +31,7 @@ public class UnemploymentTableController implements Initializable {
     private TableColumn<Unemployment, Double> femaleColumn;
 
     @FXML
-    private TableColumn<?, ?> totalColumn;
+    private TableColumn<Unemployment, Double> totalColumn;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,12 +42,12 @@ public class UnemploymentTableController implements Initializable {
         femaleColumn.setCellValueFactory(new PropertyValueFactory<>("female"));
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 
-        tableView.getItems().addAll(DBUtility.retrieveUnemploymentFromDB());
+        tableView.getItems().addAll(DBUtility.retrieveUnemploymentFromDB(""));
     }
 
     @FXML
     void viewChart_onClick(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "unemployment-chart-view.fxml", "Duration of Unemployment Chart");
+        SceneChanger.changeScene(event, "unemployment-chart-view.fxml", "Unemployment Chart");
     }
 
 }
