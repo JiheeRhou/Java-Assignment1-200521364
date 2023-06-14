@@ -1,5 +1,8 @@
-package com.example.javaassignment1200521364;
+package com.example.javaassignment1200521364.Controller;
 
+import com.example.javaassignment1200521364.Model.Unemployment;
+import com.example.javaassignment1200521364.Utilities.DBUtility;
+import com.example.javaassignment1200521364.Utilities.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,7 +44,7 @@ public class UnemploymentChartController implements Initializable {
 
     @FXML
     void viewTable_onClick(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "unemployment-table-view.fxml", "Unemployment");
+        SceneChanger.changeScene(event, "View/unemployment-table-view.fxml", "Unemployment");
     }
 
     @FXML

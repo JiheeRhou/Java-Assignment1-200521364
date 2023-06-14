@@ -1,11 +1,9 @@
-package com.example.javaassignment1200521364;
+package com.example.javaassignment1200521364.Utilities;
 
+import com.example.javaassignment1200521364.Model.Unemployment;
 import javafx.scene.chart.XYChart;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DBUtility {

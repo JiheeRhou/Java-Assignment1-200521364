@@ -1,4 +1,4 @@
-package com.example.javaassignment1200521364;
+package com.example.javaassignment1200521364.Model;
 
 public class Unemployment {
     private int id;
