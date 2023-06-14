@@ -1,0 +1,78 @@
+.label {
+    -fx-font-family: "Britannic Bold";
+    -fx-font-size: 16px;
+}
+
+.table-view {
+    -fx-font-family: "Century Gothic";
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #e9f37550;
+}
+
+.table-row-cell:even {
+    -fx-background-color: #e9567550;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #93f9b9;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #ff7300;
+    -fx-font-weight: bold;
+}
+
+.axis {
+    -fx-tick-label-fill: #341484;
+    -fx-tick-label-font-family: "Britannic Bold";
+}
+
+.check-box {
+    -fx-font-family: Leelawadee;
+}
+
+.check-box:selected {
+    -fx-font-weight: bold;
+}
+
+.check-box .box {
+    -fx-border-color: #341484;
+    -fx-border-radius: 5;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #93f9b9;
+}
+
+.combo-box {
+    -fx-font-family: "Arial Black";
+}
+
+.button{
+    -fx-background-color: #76f5d3;
+    -fx-background-radius: 30;
+    -fx-font-family: "Eras Bold ITC";
+    -fx-text-fill: #341484;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #341484;
+    -fx-text-fill: #76f5d3;
+}
+
+#bg_table {
+    -fx-background-color: #c580f0;
+}
+
+#bg_chart {
+    -fx-background-color: #f8dc69;
+}
+
+#titleLabel {
+    -fx-text-fill: #3005a8;
+    -fx-font-size: 24px;
+}
