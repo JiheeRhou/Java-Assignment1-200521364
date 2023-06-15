@@ -9,9 +9,21 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Scene Changer class
+ *
+ * @author Ji Hee Rhou
+ */
 public class SceneChanger {
+    /**
+     * This is a method to change the scene
+     * @param actionEvent
+     * @param fxmlFileName
+     * @param viewTitle
+     * @throws IOException
+     */
     public static void changeScene(ActionEvent actionEvent, String fxmlFileName, String viewTitle) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFileName));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("View/" + fxmlFileName));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setTitle(viewTitle);

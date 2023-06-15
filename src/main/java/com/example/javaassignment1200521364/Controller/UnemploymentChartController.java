@@ -1,6 +1,5 @@
 package com.example.javaassignment1200521364.Controller;
 
-import com.example.javaassignment1200521364.Model.Unemployment;
 import com.example.javaassignment1200521364.Utilities.DBUtility;
 import com.example.javaassignment1200521364.Utilities.SceneChanger;
 import javafx.event.ActionEvent;
@@ -16,6 +15,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Unemployment Chart Controller class
+ *
+ * @author Ji Hee Rhou
+ */
 public class UnemploymentChartController implements Initializable {
 
     @FXML
@@ -42,50 +46,82 @@ public class UnemploymentChartController implements Initializable {
     @FXML
     private ComboBox<String> typeComboBox;
 
+    /**
+     * This is a method for the event when the user click the 'View Table' button
+     * change the table scene to chart scene
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void viewTable_onClick(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "View/unemployment-table-view.fxml", "Unemployment");
+        SceneChanger.changeScene(event, "unemployment-table-view.fxml", "Unemployment");
     }
 
+    /**
+     * This is a method for the event when the user check or uncheck the month check boxes
+     * @param event
+     */
     @FXML
     void monthCheckBox_onClick(ActionEvent event) {
-        drawChart();
+        // display the chart
+        displayChart();
     }
 
+    /**
+     * This is a method for the event when the user change the type
+     * @param event
+     */
     @FXML
     void typeComboBox_onChange(ActionEvent event) {
+        // initialize the month checkBoxes
         marchCheckBox.setSelected(true);
         juneCheckBox.setSelected(false);
         septemberCheckBox.setSelected(false);
         decemberCheckBox.setSelected(false);
 
-        drawChart();
-
-        String type = typeComboBox.getValue();
-        categoryAxis.setLabel(type);
+        // display the chart
+        displayChart();
     }
 
-    public void drawChart(){
+    /**
+     * This is a method to initialize the chart scene
+     * get the data from the database and display the chart
+     * @param url
+     * @param resourceBundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //set type combobox items and set the value
+        typeComboBox.getItems().addAll("Duration", "Age Group");
+        typeComboBox.setValue("Duration");
+
+        // display the chart
+        displayChart();
+    }
+
+    /**
+     * This is a method to get the data from the database and display the chart
+     */
+    public void displayChart(){
+        // clear the chart
         barChart.getData().clear();
 
+        // get the type from the type comboBox
         String type = typeComboBox.getValue();
+
+        // set the axis labels
+        numberAxis.setLabel("Unemployment");
+        categoryAxis.setLabel(type);
+
+        // get the checked months
         String[] months = getMonthCheck().split(",");
+        // add the chart of each checked month
         for(String month : months){
             barChart.getData().addAll(DBUtility.retrieveUnemploymentChartFromDB(type, month));
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        typeComboBox.getItems().add("Duration");
-        typeComboBox.getItems().add("Age Group");
-        typeComboBox.setValue("Duration");
-
-        drawChart();
-        numberAxis.setLabel("Unemployment");
-        categoryAxis.setLabel("Duration");
-    }
-
+    // get the checked months
     public String getMonthCheck(){
         String checkedMonths = "";
 

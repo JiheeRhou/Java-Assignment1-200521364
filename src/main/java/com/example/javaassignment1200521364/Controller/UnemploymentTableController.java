@@ -14,6 +14,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Unemployment Table Controller class
+ *
+ * @author Ji Hee Rhou
+ */
 public class UnemploymentTableController implements Initializable {
 
     @FXML
@@ -36,6 +41,23 @@ public class UnemploymentTableController implements Initializable {
     @FXML
     private TableColumn<Unemployment, Double> totalColumn;
 
+    /**
+     * This is a method for the event when the user click the 'View Chart' button
+     * change the chart scene to table scene
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void viewChart_onClick(ActionEvent event) throws IOException {
+        SceneChanger.changeScene(event, "unemployment-chart-view.fxml", "Unemployment Chart");
+    }
+
+    /**
+     * This is a method to initialize the table scene
+     * get the data from the database and display the table
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         monthColumn.setCellValueFactory(new PropertyValueFactory<>("month"));
@@ -46,11 +68,6 @@ public class UnemploymentTableController implements Initializable {
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 
         tableView.getItems().addAll(DBUtility.retrieveUnemploymentFromDB(""));
-    }
-
-    @FXML
-    void viewChart_onClick(ActionEvent event) throws IOException {
-        SceneChanger.changeScene(event, "View/unemployment-chart-view.fxml", "Unemployment Chart");
     }
 
 }

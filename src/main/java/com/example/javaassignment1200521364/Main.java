@@ -8,6 +8,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Main class
+ *
+ * @author Ji Hee Rhou
+ */
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {

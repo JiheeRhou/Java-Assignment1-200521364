@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * This is Unemployment model
+ * Unemployment Model class
+ *
+ * @author Ji Hee Rhou
  */
 public class Unemployment {
     private int id;
@@ -42,6 +44,7 @@ public class Unemployment {
     }
 
     public void setId(int id) {
+        // Validate the id is not negative
         if(id <= 0){
             throw new IllegalArgumentException("Id cannot not be negative.");
         }
@@ -55,7 +58,9 @@ public class Unemployment {
     }
 
     public void setMonth(String month) {
+        // get the list of the months
         List<String> validMonths = findMonths();
+        // Validate using lists get from the findMonth method
         if(validMonths.contains(month)){
             this.month = month;
         }
@@ -64,6 +69,10 @@ public class Unemployment {
         }
     }
 
+    /**
+     * This is a method to get the list of the months
+     * @return the list of the months
+     */
     public static List<String> findMonths(){
         return Arrays.asList("Mar", "Jun", "Sep", "Dec");
     }
@@ -73,7 +82,9 @@ public class Unemployment {
     }
 
     public void setDuration(String duration) {
+        // get the list of the durations
         List<String> validDurations = findDurations();
+        // Validate using lists get from the findDurations method
         if(validDurations.contains(duration)){
             this.duration = duration;
         }
@@ -82,6 +93,10 @@ public class Unemployment {
         }
     }
 
+    /**
+     * This is a method to get the list of the durations
+     * @return the list of the durations
+     */
     public static List<String> findDurations(){
         return Arrays.asList("1-4 weeks", "5-13 weeks", "14-25 weeks", "26 weeks", "27-51 weeks", "52 weeks", "53 weeks or more", "unknown");
     }
@@ -91,7 +106,9 @@ public class Unemployment {
     }
 
     public void setAgeGroup(String ageGroup) {
+        // get the list of the age groups
         List<String> validAgeGroups = findAgeGroups();
+        // Validate using lists get from the findAgeGroups method
         if(validAgeGroups.contains(ageGroup)){
             this.ageGroup = ageGroup;
         }
@@ -100,6 +117,10 @@ public class Unemployment {
         }
     }
 
+    /**
+     * This is a method to get the list of the age groups
+     * @return the list of the age groups
+     */
     public static List<String> findAgeGroups(){
         return Arrays.asList("15-19", "20-24", "25-44", "45-54", "55-64", "65 years and over");
     }
@@ -109,6 +130,7 @@ public class Unemployment {
     }
 
     public void setMale(double male) {
+        // Validate the male is not negative
         if(male < 0){
             throw new IllegalArgumentException("Male cannot not be negative.");
         }
@@ -122,6 +144,7 @@ public class Unemployment {
     }
 
     public void setFemale(double female) {
+        // Validate the female is not negative
         if(female < 0){
             throw new IllegalArgumentException("Female cannot not be negative.");
         }
@@ -135,6 +158,7 @@ public class Unemployment {
     }
 
     public void setTotal(double total) {
+        // Validate the total is not negative
         if(total < 0){
             throw new IllegalArgumentException("Total cannot not be negative.");
         }
