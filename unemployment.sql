@@ -1,18 +1,18 @@
 CREATE TABLE month (
   id int NOT NULL AUTO_INCREMENT,
-  month varchar(45) NOT NULL,
+  month_name varchar(45) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE duration (
   id int NOT NULL AUTO_INCREMENT,
-  duration varchar(45) NOT NULL,
+  duration_name varchar(45) NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE ageGroup (
   id int NOT NULL AUTO_INCREMENT,
-  age_group varchar(45) NOT NULL,
+  age_group_name varchar(45) NOT NULL,
   PRIMARY KEY (id)
 );
 
@@ -32,14 +32,14 @@ CREATE TABLE unemployment (
   CONSTRAINT MonthId FOREIGN KEY (month_id) REFERENCES month (id)
 );
 
-INSERT INTO month (month)												
+INSERT INTO month (month_name)												
 VALUES 
 ('Mar'),
 ('Jun'),
 ('Sep'),
 ('Dec');
 
-INSERT INTO duration (duration)												
+INSERT INTO duration (duration_name)												
 VALUES 
 ('1-4 weeks'),
 ('5-13 weeks'),
@@ -50,7 +50,7 @@ VALUES
 ('53 weeks or more'),
 ('unknown');
 
-INSERT INTO ageGroup (age_group)												
+INSERT INTO ageGroup (age_group_name)												
 VALUES 
 ('15-19'),
 ('20-24'),
@@ -255,7 +255,7 @@ VALUES
 (4, 8, 6, 0, 0);
 
 
-SELECT m.month, d.duration, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total
+SELECT m.month_name, d.duration_name, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total
 FROM unemployment u
 JOIN month m
 ON u.month_id = m.id
@@ -264,7 +264,7 @@ ON u.duration_id = d.id
 GROUP BY m.id, d.id
 ORDER BY m.id, d.id;
 
-SELECT m.month, ag.age_group, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total
+SELECT m.month_name, ag.age_group_name, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total
 FROM unemployment u
 JOIN month m
 ON u.month_id = m.id
@@ -274,7 +274,7 @@ GROUP BY m.id, ag.id
 ORDER BY m.id, ag.id;
 
 
-SELECT u.id, m.month, d.duration, ag.age_group, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total
+SELECT u.id, m.month_name, d.duration_name, ag.age_group_name, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total
 FROM unemployment u
 JOIN month m
 ON u.month_id = m.id
