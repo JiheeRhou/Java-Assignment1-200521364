@@ -16,7 +16,7 @@ public class DBUtility {
         String sql = "";
 
         if(type.equals("Duration")){
-            sql = "SELECT m.month, d.duration, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total\n" +
+            sql = "SELECT 0 AS id, m.month_name, d.duration_name, '' AS age_group_name, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total\n" +
                     "FROM unemployment u\n" +
                     "JOIN month m\n" +
                     "ON u.month_id = m.id\n" +
@@ -26,7 +26,7 @@ public class DBUtility {
                     "ORDER BY m.id, d.id;";
 
         } else if(type.equals("Age Group")){
-            sql = "SELECT m.month, ag.age_group, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total\n" +
+            sql = "SELECT 0 AS id, m.month_name, '' AS duration_name, ag.age_group_name, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total\n" +
                     "FROM unemployment u\n" +
                     "JOIN month m\n" +
                     "ON u.month_id = m.id\n" +
@@ -35,7 +35,7 @@ public class DBUtility {
                     "GROUP BY m.id, ag.id\n" +
                     "ORDER BY m.id, ag.id;";
         } else {
-            sql = "SELECT u.id, m.month, d.duration, ag.age_group, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total\n" +
+            sql = "SELECT u.id, m.month_name, d.duration_name, ag.age_group_name, format(sum(u.male), 1) AS male, format(sum(u.female), 1) AS female, format(sum(u.male + u.female), 1) AS total\n" +
                     "FROM unemployment u\n" +
                     "JOIN month m\n" +
                     "ON u.month_id = m.id\n" +
@@ -53,27 +53,27 @@ public class DBUtility {
                 ResultSet resultSet = statement.executeQuery(sql);
                 ) {
             while (resultSet.next()){
-                int id = 0;
-                String month = resultSet.getString("month");
-                String duration = "";
-                String ageGroup = "";
-                if(!type.equals("Age Group") && !type.equals("Duration")){
-                    id = resultSet.getInt("id");
-                }
-                if(!type.equals("Age Group")) {
-                    duration = resultSet.getString("duration");
-                }
-                if(!type.equals("Duration")) {
-                    ageGroup = resultSet.getString("age_group");
-                }
+                int id = resultSet.getInt("id");
+                String month = resultSet.getString("month_name");
+                String duration = resultSet.getString("duration_name");
+                String ageGroup = resultSet.getString("age_group_name");
                 Double male = resultSet.getDouble("male");
                 Double female = resultSet.getDouble("female");
                 Double total = resultSet.getDouble("total");
 
-                Unemployment newUnemployment = new Unemployment(id, month, duration, ageGroup, male, female, total);
-                unemploymentList.add(newUnemployment);
+                if(type.equals("Duration")) {
+                    Unemployment newUnemployment = new Unemployment(month, duration, total);
+                    unemploymentList.add(newUnemployment);
+                }
+                else if(type.equals("Age Group")) {
+                    Unemployment newUnemployment = new Unemployment(month, total, ageGroup);
+                    unemploymentList.add(newUnemployment);
+                }
+                else {
+                    Unemployment newUnemployment = new Unemployment(id, month, duration, ageGroup, male, female, total);
+                    unemploymentList.add(newUnemployment);
+                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
